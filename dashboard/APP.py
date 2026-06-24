@@ -6,6 +6,7 @@ from db import (
     get_transactions,
     get_pipeline_logs
 )
+from dashboard.theme import apply_dashboard_theme, safe_top_value
 
 # ==================================
 # PAGE CONFIG (MUST BE FIRST)
@@ -16,36 +17,7 @@ st.set_page_config(
     page_icon="🛡️",
     layout="wide"
 )
-st.markdown("""
-<style>
-
-.hero {
-    background: linear-gradient(
-        90deg,
-        #1e3c72,
-        #2a5298
-    );
-
-    padding: 25px;
-
-    border-radius: 15px;
-
-    color: white;
-
-    margin-bottom: 20px;
-}
-
-.hero h1 {
-    margin: 0;
-}
-
-.hero p {
-    margin: 0;
-    opacity: 0.9;
-}
-
-</style>
-""", unsafe_allow_html=True)
+apply_dashboard_theme()
 
 st.markdown("""
 <div class="hero">
@@ -57,24 +29,6 @@ Enterprise Fraud Analytics Platform
 </p>
 
 </div>
-""", unsafe_allow_html=True)
-
-# ==================================
-# CUSTOM CSS
-# ==================================
-
-st.markdown("""
-<style>
-
-[data-testid="metric-container"] {
-    background-color: #1e1e1e;
-    border: 1px solid #444;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
-}
-
-</style>
 """, unsafe_allow_html=True)
 
 # ==================================
@@ -131,6 +85,12 @@ if selected_category != "All":
     filtered_df = filtered_df[
         filtered_df["category"] == selected_category
     ]
+
+if filtered_df.empty:
+    st.warning(
+        "No transactions match the current filters. Clear one or more filters to see results."
+    )
+    st.stop()
 # ===============================
 # ALERT BANNER
 # ===============================
@@ -151,21 +111,15 @@ if high_fraud > 0:
 # ===============================
 
 top_city = (
-    filtered_df["city"]
-    .value_counts()
-    .idxmax()
+    safe_top_value(filtered_df["city"])
 )
 
 top_merchant = (
-    filtered_df["merchant"]
-    .value_counts()
-    .idxmax()
+    safe_top_value(filtered_df["merchant"])
 )
 
 top_risk = (
-    filtered_df["risk_level"]
-    .value_counts()
-    .idxmax()
+    safe_top_value(filtered_df["risk_level"])
 )
 
 st.subheader("📋 Executive Summary")
@@ -275,9 +229,7 @@ high_risk_pct = round(
 )
 
 top_category = (
-    filtered_df["category"]
-    .value_counts()
-    .idxmax()
+    safe_top_value(filtered_df["category"])
 )
 
 st.divider()
@@ -339,7 +291,7 @@ fig = px.pie(
 
 st.plotly_chart(
     fig,
-    use_container_width=True
+    width="stretch"
 )
 
 # ==================================
@@ -369,10 +321,9 @@ risk_fig = px.bar(
 )
 
 st.plotly_chart(
-    risk_fig,
-    use_container_width=True
+    fig,
+    width="stretch"
 )
-
 # ==================================
 # TOP CITIES
 # ==================================
@@ -402,7 +353,7 @@ city_fig = px.bar(
 
 st.plotly_chart(
     city_fig,
-    use_container_width=True
+    width="stretch"
 )
 
 # ==================================
@@ -434,7 +385,7 @@ merchant_fig = px.bar(
 
 st.plotly_chart(
     merchant_fig,
-    use_container_width=True
+    width="stretch"
 )
 
 #==========================
@@ -455,7 +406,7 @@ fig = px.histogram(
 
 st.plotly_chart(
     fig,
-    use_container_width=True
+    width="stretch"
 )
 #==================
 #Top Fraud Cities
@@ -490,7 +441,7 @@ fig = px.bar(
 
 st.plotly_chart(
     fig,
-    use_container_width=True
+    width="stretch"
 )
 #====================
 #top fraud merchants
@@ -526,7 +477,7 @@ fig = px.bar(
 
 st.plotly_chart(
     fig,
-    use_container_width=True
+    width="stretch"
 )
 
 # ==================================
@@ -564,7 +515,7 @@ trend_fig = px.line(
 
 st.plotly_chart(
     trend_fig,
-    use_container_width=True
+    width="stretch"
 )
 # ==================================
 # PIPELINE LOGS
@@ -576,5 +527,5 @@ st.subheader("Latest Pipeline Run")
 
 st.dataframe(
     logs_df.head(1),
-    use_container_width=True
+    width="stretch"
 )

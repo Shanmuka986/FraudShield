@@ -2,12 +2,15 @@ import streamlit as st
 import pandas as pd
 
 from db import get_transactions
+from dashboard.theme import apply_dashboard_theme, safe_top_value
 
 st.set_page_config(
     page_title="Alert Center",
     page_icon="🚨",
     layout="wide"
 )
+
+apply_dashboard_theme()
 
 st.title("🚨 Fraud Alert Center")
 
@@ -116,15 +119,11 @@ st.subheader(
 if len(high_fraud_df) > 0:
 
     top_merchant = (
-        high_fraud_df["merchant"]
-        .value_counts()
-        .idxmax()
+        safe_top_value(high_fraud_df["merchant"])
     )
 
     top_city = (
-        high_fraud_df["city"]
-        .value_counts()
-        .idxmax()
+        safe_top_value(high_fraud_df["city"])
     )
 
     st.error(

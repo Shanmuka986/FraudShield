@@ -4,12 +4,15 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 from db import get_transactions
+from dashboard.theme import apply_dashboard_theme
 
 st.set_page_config(
     page_title="Fraud Heatmap",
     page_icon="🔥",
     layout="wide"
 )
+
+apply_dashboard_theme()
 
 st.title("🔥 Fraud Heatmap")
 

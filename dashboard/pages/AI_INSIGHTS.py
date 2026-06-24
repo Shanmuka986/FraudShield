@@ -1,26 +1,23 @@
 import streamlit as st
 from db import get_transactions
+from dashboard.theme import apply_dashboard_theme, safe_top_value
+
+apply_dashboard_theme()
 
 st.title("🤖 AI Insights")
 
 df = get_transactions()
 
 top_city = (
-    df["city"]
-    .value_counts()
-    .idxmax()
+    safe_top_value(df["city"])
 )
 
 top_merchant = (
-    df["merchant"]
-    .value_counts()
-    .idxmax()
+    safe_top_value(df["merchant"])
 )
 
 top_risk = (
-    df["risk_level"]
-    .value_counts()
-    .idxmax()
+    safe_top_value(df["risk_level"])
 )
 
 st.info(

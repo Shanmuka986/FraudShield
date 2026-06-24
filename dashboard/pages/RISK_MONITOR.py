@@ -3,12 +3,15 @@ import pandas as pd
 import plotly.express as px
 
 from db import get_transactions
+from dashboard.theme import apply_dashboard_theme
 
 st.set_page_config(
     page_title="Risk Monitor",
     page_icon="⚠️",
     layout="wide"
 )
+
+apply_dashboard_theme()
 
 st.title("⚠️ Risk Monitor")
 

@@ -11,6 +11,7 @@ try:
     from dashboard.db import get_transactions
 except ModuleNotFoundError:
     from db import get_transactions
+from dashboard.theme import apply_dashboard_theme, safe_mode_value, safe_top_value
 
 from reportlab.platypus import (
     SimpleDocTemplate,
@@ -32,6 +33,8 @@ st.set_page_config(
     page_icon="📥",
     layout="wide"
 )
+
+apply_dashboard_theme()
 
 st.title("📥 Reports Center")
 
@@ -87,6 +90,12 @@ if risk != "All":
         filtered_df["risk_level"] == risk
     ]
 
+if filtered_df.empty:
+    st.warning(
+        "No records match the current report filters. Try a broader city or risk level."
+    )
+    st.stop()
+
 # ==================================
 # REPORT PREVIEW
 # ==================================
@@ -105,13 +114,11 @@ fraud_transactions = (
 )
 
 top_city = (
-    filtered_df["city"]
-    .mode()[0]
+    safe_mode_value(filtered_df["city"])
 )
 
 top_merchant = (
-    filtered_df["merchant"]
-    .mode()[0]
+    safe_mode_value(filtered_df["merchant"])
 )
 
 p1, p2, p3, p4 = st.columns(4)
@@ -378,29 +385,13 @@ def create_pdf_report(df):
         2
     )
 
-    top_city = (
-        df["city"]
-        .value_counts()
-        .idxmax()
-    )
+    top_city = safe_top_value(df["city"])
 
-    top_merchant = (
-        df["merchant"]
-        .value_counts()
-        .idxmax()
-    )
+    top_merchant = safe_top_value(df["merchant"])
 
-    top_risk = (
-        df["risk_level"]
-        .value_counts()
-        .idxmax()
-    )
+    top_risk = safe_top_value(df["risk_level"])
 
-    top_category = (
-        df["category"]
-        .value_counts()
-        .idxmax()
-    )
+    top_category = safe_top_value(df["category"])
 
     content.append(
         Paragraph(

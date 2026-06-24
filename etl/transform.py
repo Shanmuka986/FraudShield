@@ -4,33 +4,112 @@ import os
 
 def transform_data(df):
 
-    # Remove duplicates
     initial_rows = len(df)
 
-    df = df.drop_duplicates()
+    # ==========================
+    # Missing Values
+    # ==========================
 
-    final_rows = len(df)
-
-    print(
-        f"Removed {initial_rows - final_rows} duplicates"
+    missing_before = (
+        df.isnull()
+        .sum()
+        .sum()
     )
 
-    # Handle missing values
-    df["amount"] = df["amount"].fillna(0)
+    df["city"] = (
+        df["city"]
+        .fillna("Unknown")
+    )
 
-    # Convert fraud flag
-    df["fraud_flag"] = df["fraud_flag"].astype(bool)
+    df["category"] = (
+        df["category"]
+        .fillna("Unknown")
+    )
 
-    # Create folder automatically
+    # ==========================
+    # Duplicate Detection
+    # ==========================
+
+    duplicate_count = (
+        df.duplicated(
+            subset=[
+                "merchant",
+                "city",
+                "category",
+                "device",
+                "amount",
+                "fraud_flag",
+                "fraud_score",
+                "risk_level"
+            ]
+        )
+        .sum()
+    )
+
+    df = df.drop_duplicates(
+        subset=[
+            "merchant",
+            "city",
+            "category",
+            "device",
+            "amount",
+            "fraud_flag",
+            "fraud_score",
+            "risk_level"
+        ]
+    )
+
+    # ==========================
+    # Data Types
+    # ==========================
+
+    df["fraud_flag"] = (
+        df["fraud_flag"]
+        .astype(bool)
+    )
+
+    # ==========================
+    # Quality Score
+    # ==========================
+
+    quality_score = round(
+        (
+            1 -
+            (
+                duplicate_count
+                +
+                missing_before
+            )
+            /
+            initial_rows
+        ) * 100,
+        2
+    )
+
+    # ==========================
+    # Save Processed File
+    # ==========================
+
     os.makedirs(
         "data/processed",
         exist_ok=True
     )
 
-    # Save processed data
     df.to_csv(
         "data/processed/clean_transactions.csv",
         index=False
+    )
+
+    print(
+        f"Missing Values Found: {missing_before}"
+    )
+
+    print(
+        f"Duplicates Removed: {duplicate_count}"
+    )
+
+    print(
+        f"Quality Score: {quality_score}%"
     )
 
     print(

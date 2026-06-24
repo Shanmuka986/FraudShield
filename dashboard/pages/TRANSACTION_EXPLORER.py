@@ -4,6 +4,10 @@ from simulator.config import (
     HIGH_RISK_MERCHANTS,
     FESTIVAL_MONTHS
 )
+from dashboard.theme import apply_dashboard_theme
+
+apply_dashboard_theme()
+
 st.title("🔍 Transaction Explorer")
 
 df = get_transactions()
@@ -50,5 +54,5 @@ if search:
 
 st.dataframe(
     filtered,
-    use_container_width=True
+    width="stretch"
 )

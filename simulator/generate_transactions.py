@@ -1,3 +1,4 @@
+
 import pandas as pd
 import random
 from datetime import datetime, timedelta
@@ -6,14 +7,20 @@ import sys
 from pathlib import Path
 
 if __package__ is None or __package__ == "":
-    sys.path.append(str(Path(__file__).resolve().parent.parent))
+    sys.path.append(
+        str(
+            Path(__file__)
+            .resolve()
+            .parent
+            .parent
+        )
+    )
 
 from simulator.merchants import MERCHANTS
 from simulator.locations import CITIES
 from simulator.categories import CATEGORIES
 from simulator.devices import DEVICES
 from simulator.fraud_rules import calculate_risk
-
 
 HIGH_RISK_MERCHANTS = [
     "Amazon",
@@ -25,29 +32,46 @@ HIGH_RISK_MERCHANTS = [
 FESTIVAL_MONTHS = [10, 11, 12]
 
 
-def generate_transactions(num_records=1000):
+def generate_transactions(
+    num_records=1000
+):
 
     data = []
 
     for i in range(num_records):
 
         amount = round(
-            random.uniform(100, 100000),
+            random.uniform(
+                100,
+                100000
+            ),
             2
         )
 
-        risk_level = calculate_risk(amount)
-
-        transaction_time = datetime.now() - timedelta(
-            days=random.randint(0, 364),
-            seconds=random.randint(0, 86399)
+        risk_level = calculate_risk(
+            amount
         )
 
-        merchant = random.choice(MERCHANTS)
+        transaction_time = (
+            datetime.now()
+            - timedelta(
+                days=random.randint(
+                    0,
+                    364
+                ),
+                seconds=random.randint(
+                    0,
+                    86399
+                )
+            )
+        )
+
+        merchant = random.choice(
+            MERCHANTS
+        )
 
         fraud_probability = 0.02
 
-        # Amount Risk
         if risk_level == "Critical":
             fraud_probability += 0.25
 
@@ -57,49 +81,117 @@ def generate_transactions(num_records=1000):
         elif risk_level == "Medium":
             fraud_probability += 0.05
 
-        # Merchant Risk
         if merchant in HIGH_RISK_MERCHANTS:
             fraud_probability += 0.10
 
-        # Night Time Risk
         if (
             transaction_time.hour >= 22
             or transaction_time.hour <= 5
         ):
             fraud_probability += 0.15
 
-        # Festival Risk
-        if transaction_time.month in FESTIVAL_MONTHS:
+        if (
+            transaction_time.month
+            in FESTIVAL_MONTHS
+        ):
             fraud_probability += 0.05
 
-        fraud_score = round(
-            fraud_probability * 100,
-            2
+        fraud_score = min(
+            round(
+                fraud_probability * 100
+                + random.randint(
+                    0,
+                    25
+                ),
+                2
+            ),
+            100
         )
 
         fraud_flag = (
-            random.random() < fraud_probability
+            random.random()
+            < fraud_probability
         )
 
-        data.append({
-            "transaction_id": f"TXN-{uuid4().hex[:12]}",
-            "merchant": merchant,
-            "city": random.choice(CITIES),
-            "category": random.choice(CATEGORIES),
-            "device": random.choice(DEVICES),
-            "amount": amount,
-            "fraud_flag": fraud_flag,
-            "fraud_score": fraud_score,
-            "risk_level": risk_level,
-            "transaction_time": transaction_time
-        })
+        city = random.choice(
+            CITIES
+        )
 
-    return pd.DataFrame(data)
+        category = random.choice(
+            CATEGORIES
+        )
+
+        device = random.choice(
+            DEVICES
+        )
+
+        # 1% Missing Values
+
+        if random.random() < 0.01:
+            city = None
+
+        if random.random() < 0.01:
+            category = None
+
+        data.append(
+            {
+                "transaction_id":
+                f"TXN-{uuid4().hex[:12]}",
+
+                "merchant":
+                merchant,
+
+                "city":
+                city,
+
+                "category":
+                category,
+
+                "device":
+                device,
+
+                "amount":
+                amount,
+
+                "fraud_flag":
+                fraud_flag,
+
+                "fraud_score":
+                fraud_score,
+
+                "risk_level":
+                risk_level,
+
+                "transaction_time":
+                transaction_time
+            }
+        )
+
+    df = pd.DataFrame(data)
+
+    # Create 1% duplicates
+
+    duplicate_rows = df.sample(
+        frac=0.01,
+        random_state=42
+    )
+
+    df = pd.concat(
+        [
+            df,
+            duplicate_rows
+        ],
+        ignore_index=True
+    )
+
+    return df
 
 
 if __name__ == "__main__":
 
-    df = generate_transactions(1000)
+    df = generate_transactions(
+        1000
+    )
 
     output_path = Path(
         "data/raw/transactions.csv"
@@ -116,5 +208,5 @@ if __name__ == "__main__":
     )
 
     print(
-        "1000 transactions generated successfully."
+        f"{len(df)} transactions generated successfully."
     )

@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from db import get_transactions
+from dashboard.theme import apply_dashboard_theme
+
+apply_dashboard_theme()
 
 st.title("🚨 Fraud Analytics")
 
@@ -36,5 +39,5 @@ fig = px.bar(
 
 st.plotly_chart(
     fig,
-    use_container_width=True
+    width="stretch"
 )
