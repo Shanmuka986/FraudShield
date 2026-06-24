@@ -784,9 +784,12 @@ st.markdown("---")
 
 st.header("📑 PDF Reports")
 
-export_dashboard_charts(
-    filtered_df
-)
+if st.button(
+    "Generate Chart Exports"
+):
+    export_dashboard_charts(
+        filtered_df
+    )
 
 pdf_file = create_pdf_report(
     filtered_df

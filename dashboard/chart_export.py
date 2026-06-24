@@ -11,6 +11,9 @@ def save_plotly_chart(fig, filename):
         exist_ok=True
     )
 
-    fig.write_image(
-        f"reports/charts/{filename}"
-    )
+    try:
+        fig.write_image(
+            f"reports/charts/{filename}"
+        )
+    except Exception:
+        pass

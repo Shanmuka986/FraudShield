@@ -11,3 +11,4 @@ openpyxl
 seaborn
 matplotlib
 reportlab
+kaleido
