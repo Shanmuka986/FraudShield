@@ -536,7 +536,9 @@ def create_enterprise_pdf(df):
 
     content = []
 
+    # ==========================
     # COVER PAGE
+    # ==========================
 
     content.append(
         Paragraph(
@@ -571,7 +573,9 @@ def create_enterprise_pdf(df):
         PageBreak()
     )
 
+    # ==========================
     # EXECUTIVE SUMMARY
+    # ==========================
 
     total_transactions = len(df)
 
@@ -587,7 +591,7 @@ def create_enterprise_pdf(df):
             total_transactions
         ) * 100,
         2
-    )
+    ) if total_transactions > 0 else 0
 
     total_amount = round(
         df["amount"]
@@ -709,72 +713,60 @@ def create_enterprise_pdf(df):
     )
 
     content.append(
-        PageBreak()
+        Spacer(1, 20)
     )
 
-    # CHARTS
+    # ==========================
+    # BUSINESS INSIGHTS
+    # ==========================
 
-    chart_files = [
-        (
-            "Fraud vs Genuine",
-            "reports/charts/fraud_pie.png"
-        ),
-        (
-            "Risk Distribution",
-            "reports/charts/risk_distribution.png"
-        ),
-        (
-            "Top Cities",
-            "reports/charts/top_cities.png"
-        ),
-        (
-            "Top Merchants",
-            "reports/charts/top_merchants.png"
+    content.append(
+        Paragraph(
+            "Business Insights",
+            styles["Heading1"]
         )
+    )
+
+    insights = [
+        f"Top operating city is {top_city}.",
+        f"Most active merchant is {top_merchant}.",
+        f"Most common risk level is {top_risk}.",
+        f"Highest transaction category is {top_category}.",
+        f"Fraud rate observed is {fraud_rate}%.",
+        f"Average fraud score is {avg_fraud_score}."
     ]
 
-    for title, path in chart_files:
+    for insight in insights:
 
         content.append(
             Paragraph(
-                title,
-                styles["Heading2"]
+                f"• {insight}",
+                styles["BodyText"]
             )
         )
 
-        content.append(
-            Spacer(1, 10)
+    content.append(
+        Spacer(1, 20)
+    )
+
+    # ==========================
+    # DEPLOYMENT SAFE NOTE
+    # ==========================
+
+    content.append(
+        Paragraph(
+            "Charts are available in the live FraudShield dashboard. "
+            "Chart images are excluded from the cloud-generated PDF "
+            "to ensure compatibility with Streamlit deployment.",
+            styles["BodyText"]
         )
-
-        try:
-
-            content.append(
-                Image(
-                    path,
-                    width=450,
-                    height=250
-                )
-            )
-
-        except Exception:
-
-            content.append(
-                Paragraph(
-                    "Chart Not Available",
-                    styles["BodyText"]
-                )
-            )
-
-        content.append(
-            PageBreak()
-        )
+    )
 
     doc.build(content)
 
     pdf_buffer.seek(0)
 
     return pdf_buffer
-
 
 # ==================================
 # PDF REPORTS
