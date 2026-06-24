@@ -791,7 +791,7 @@ enterprise_pdf = create_enterprise_pdf(
     filtered_df
 )
 
-sst.download_button(
+st.download_button(
     "📑 Executive PDF Report",
     pdf_file,
     "FraudShield_Report.pdf",
