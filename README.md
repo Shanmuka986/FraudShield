@@ -1,150 +1,166 @@
-🚀 Live Features
-## 🚀 Live Features
+# 🛡️ FraudShield
+
+### Enterprise Fraud Analytics Platform
+
+FraudShield is a full-stack Data Engineering and Fraud Analytics platform that simulates financial transactions, detects suspicious activity, performs automated ETL processing, monitors data quality, and delivers real-time business intelligence through interactive dashboards.
+
+---
+
+## 🌐 Live Demo
+
+**Live Application:** [Add your Streamlit URL here]
+
+**GitHub Repository:** [Add your GitHub repository URL here]
+
+---
+
+## 🚀 Key Features
 
 ### 📊 Analytics Dashboard
-- Fraud vs Genuine Transactions
-- Risk Distribution
-- Top Cities Analysis
-- Top Merchants Analysis
-- Fraud Score Distribution
-- Business KPIs
 
-### 🚨 Alert Center
-- High Risk Transactions
-- Critical Risk Alerts
-- Suspicious Activity Detection
+* Fraud vs Genuine Transaction Analysis
+* Risk Distribution Monitoring
+* Top Cities & Merchant Analytics
+* Fraud Score Distribution
+* Business KPI Tracking
+* Executive Summary Insights
 
-### 📋 Data Quality Monitor
-- Missing Values Tracking
-- Duplicate Detection
-- Quality Score Monitoring
-- Pipeline Health Check
+### 🚨 Alert Management
 
-### 🌍 Fraud Heatmap
-- City vs Risk Level Analysis
-- Geographic Fraud Insights
+* High-Risk Transaction Detection
+* Critical Risk Monitoring
+* Suspicious Activity Alerts
+* Real-Time Fraud Indicators
 
-### 📑 Reports Center
-- CSV Export
-- Excel Export
-- Executive PDF Reports
-- Enterprise Analytics Reports
+### 📋 Data Quality Monitoring
 
-⚙️ ETL Pipeline
-## ⚙️ ETL Pipeline
+* Missing Value Detection
+* Duplicate Record Analysis
+* Data Quality Scoring
+* Pipeline Health Monitoring
 
-Transaction Generator
-↓
-Extract
-↓
-Transform
-↓
-Duplicate Removal
-↓
-Missing Value Handling
-↓
-Quality Validation
-↓
-Load to Supabase
-↓
-Dashboard Refresh
+### 🌍 Fraud Heatmap Analytics
 
-🤖 Automated Daily Pipeline
+* Geographic Risk Distribution
+* City-Level Fraud Analysis
+* Regional Fraud Trends
 
-## 🤖 Automated Daily Pipeline
+### 📑 Reporting Center
 
-GitHub Actions automatically:
+* CSV Export
+* Excel Export
+* Executive PDF Reports
+* Enterprise Analytics Reports
 
-- Generate Transactions
-- Run ETL Pipeline
-- Clean Data
-- Load Data into Supabase
-- Update Monitoring Tables
+### 🤖 Automated ETL Pipeline
 
-Schedule: Daily Automatic Execution
+* Automated Transaction Generation
+* Data Extraction
+* Data Transformation
+* Duplicate Removal
+* Missing Value Handling
+* Data Quality Validation
+* Automated Database Loading
 
-🛠 Tech Stack
+---
 
-## 🛠 Tech Stack
+## ⚙️ Automated Workflow
 
-### Frontend
-- Streamlit
-- Plotly
+Transaction Simulator
+→ Extract
+→ Transform
+→ Data Validation
+→ Quality Checks
+→ Load to Supabase PostgreSQL
+→ Dashboard Refresh
 
-### Backend
-- Python
+GitHub Actions automatically executes the pipeline on a daily schedule.
+
+---
+
+## 🛠️ Technology Stack
+
+### Frontend & Visualization
+
+* Streamlit
+* Plotly
+
+### Backend & Processing
+
+* Python
 
 ### Data Engineering
-- Pandas
-- NumPy
+
+* Pandas
+* NumPy
 
 ### Database
-- PostgreSQL
-- Supabase
 
-### Automation
-- GitHub Actions
+* PostgreSQL
+* Supabase
+
+### Automation & DevOps
+
+* GitHub Actions
 
 ### Reporting
-- ReportLab
-- OpenPyXL
 
-📂 Project Structure
+* ReportLab
+* OpenPyXL
+
+---
+
 ## 📂 Project Structure
 
-FraudShield
-│
-├── dashboard
-├── simulator
-├── etl
-├── database
-├── .github
-└── reports
+FraudShield/
 
-🎯 Key Features
+├── dashboard/
 
-## 🎯 Key Features
+├── simulator/
 
-✅ Fraud Analytics Dashboard
+├── etl/
 
-✅ ETL Pipeline
+├── database/
 
-✅ Automated Data Generation
+├── .github/workflows/
 
-✅ Data Quality Monitoring
+├── reports/
 
-✅ Alert Management
+├── data/
 
-✅ Heatmap Analytics
+└── requirements.txt
 
-✅ Cloud Database Integration
+---
 
-✅ GitHub Actions Automation
+## 🎯 Skills Demonstrated
 
-✅ Executive Reporting
+* Data Engineering
+* ETL Pipeline Development
+* Data Analytics
+* Fraud Detection Systems
+* Dashboard Development
+* Cloud Database Management
+* GitHub Actions Automation
+* Reporting Automation
+* Data Quality Monitoring
+* Business Intelligence
 
-✅ Enterprise Reporting
+---
 
-🏆 Project Outcome
+## 🏆 Project Impact
 
-## 🏆 Project Outcome
+FraudShield simulates a production-grade fraud monitoring ecosystem used by financial institutions and e-commerce platforms. The project demonstrates end-to-end ownership of data pipelines, analytics, reporting, cloud database integration, and automation workflows.
 
-FraudShield demonstrates:
+---
 
-- Data Engineering
-- ETL Development
-- Data Analytics
-- Dashboard Development
-- Cloud Database Management
-- GitHub Automation
-- Reporting Systems
-- Data Quality Monitoring
+## 👨‍💻 Author
 
-👨‍💻 Author
-Thugadam Shanmuka Sai
+**Thugadam Shanmuka Sai**
 
-B.Tech CSE (AI & ML)
+B.Tech – Computer Science & Engineering (AI & ML)
 
 Madanapalle Institute of Technology & Science
 
 Graduation Year: 2027
+
+© 2026 Thugadam Shanmuka Sai. All Rights Reserved.
