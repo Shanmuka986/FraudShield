@@ -8,9 +8,9 @@ FraudShield is a full-stack Data Engineering and Fraud Analytics platform that s
 
 ## 🌐 Live Demo
 
-**Live Application:** [Add your Streamlit URL here]
+**Live Application:** https://fraudshield-analytics.streamlit.app/
 
-**GitHub Repository:** [Add your GitHub repository URL here]
+**GitHub Repository:** https://github.com/Shanmuka986/FraudShield
 
 ---
 
@@ -155,7 +155,7 @@ FraudShield simulates a production-grade fraud monitoring ecosystem used by fina
 
 ## 👨‍💻 Author
 
-**Thugadam Shanmuka Sai**
+**THUGADAM SHANMUKASAI**
 
 B.Tech – Computer Science & Engineering (AI & ML)
 
