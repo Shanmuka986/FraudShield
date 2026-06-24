@@ -10,3 +10,4 @@ supabase
 openpyxl
 seaborn
 matplotlib
+reportlab
