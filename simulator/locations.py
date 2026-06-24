@@ -1,0 +1,22 @@
+CITIES = [
+    "Mumbai",
+    "Delhi",
+    "Hyderabad",
+    "Bangalore",
+    "Chennai",
+    "Pune",
+    "Kolkata",
+    "Ahmedabad",
+    "Jaipur",
+    "Lucknow",
+    "Visakhapatnam",
+    "Coimbatore",
+    "Indore",
+    "Bhopal",
+    "Nagpur",
+    "Vijayawada",
+    "Patna",
+    "Surat",
+    "Chandigarh",
+    "Kochi"
+]

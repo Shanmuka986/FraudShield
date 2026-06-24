@@ -1,0 +1,5 @@
+DEVICES = [
+    "Mobile",
+    "Desktop",
+    "Tablet"
+]

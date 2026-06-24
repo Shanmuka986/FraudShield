@@ -1,0 +1,23 @@
+gitignore
+# Generated Data
+data/raw/*.csv
+data/processed/*.csv
+
+# Virtual Environment
+venv/
+
+# Environment Variables
+.env
+
+# Cache
+__pycache__/
+*.pyc
+
+# Reports
+reports/charts/
+
+# VS Code
+.vscode/
+
+# Streamlit
+.streamlit/secrets.toml
