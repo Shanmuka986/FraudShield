@@ -291,7 +291,8 @@ fig = px.pie(
 
 st.plotly_chart(
     fig,
-    width="stretch"
+    width="stretch",
+    key="fraud_pie_chart"
 )
 
 # ==================================
@@ -321,8 +322,9 @@ risk_fig = px.bar(
 )
 
 st.plotly_chart(
-    fig,
-    width="stretch"
+    risk_fig,
+    width="stretch",
+    key="risk_distribution_chart"
 )
 # ==================================
 # TOP CITIES
@@ -353,7 +355,8 @@ city_fig = px.bar(
 
 st.plotly_chart(
     city_fig,
-    width="stretch"
+    width="stretch",
+    key="top_cities_chart"
 )
 
 # ==================================
@@ -385,7 +388,8 @@ merchant_fig = px.bar(
 
 st.plotly_chart(
     merchant_fig,
-    width="stretch"
+    width="stretch",
+    key="top_merchants_chart"
 )
 
 #==========================
@@ -406,7 +410,8 @@ fig = px.histogram(
 
 st.plotly_chart(
     fig,
-    width="stretch"
+    width="stretch",
+    key="fraud_score_chart"
 )
 #==================
 #Top Fraud Cities
