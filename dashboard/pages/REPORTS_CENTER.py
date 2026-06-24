@@ -791,16 +791,13 @@ enterprise_pdf = create_enterprise_pdf(
     filtered_df
 )
 
-st.download_button(
+sst.download_button(
     "📑 Executive PDF Report",
     pdf_file,
     "FraudShield_Report.pdf",
     "application/pdf"
 )
 
-st.download_button(
-    "📊 Enterprise Analytics Report",
-    enterprise_pdf,
-    "FraudShield_Enterprise_Report.pdf",
-    "application/pdf"
+st.info(
+    "📊 Enterprise Analytics Report temporarily disabled in cloud deployment."
 )
