@@ -1,48 +1,150 @@
-# FraudShield - Fraud Detection Data Pipeline
+🚀 Live Features
+## 🚀 Live Features
 
-## Overview
+### 📊 Analytics Dashboard
+- Fraud vs Genuine Transactions
+- Risk Distribution
+- Top Cities Analysis
+- Top Merchants Analysis
+- Fraud Score Distribution
+- Business KPIs
 
-FraudShield is an end-to-end Data Engineering project that simulates banking transactions, processes them through an automated ETL pipeline, stores data in a cloud PostgreSQL warehouse, and provides interactive fraud analytics through a Streamlit dashboard.
+### 🚨 Alert Center
+- High Risk Transactions
+- Critical Risk Alerts
+- Suspicious Activity Detection
 
-## Features
+### 📋 Data Quality Monitor
+- Missing Values Tracking
+- Duplicate Detection
+- Quality Score Monitoring
+- Pipeline Health Check
 
-* Banking Transaction Simulator
-* Automated ETL Pipeline
-* Cloud Data Warehouse (Supabase PostgreSQL)
-* Fraud Scoring Engine
-* Fraud Analytics Dashboard
-* Transaction Explorer
-* Pipeline Monitoring
-* AI-Based Insights
-* Interactive Filters
+### 🌍 Fraud Heatmap
+- City vs Risk Level Analysis
+- Geographic Fraud Insights
 
-## Technology Stack
+### 📑 Reports Center
+- CSV Export
+- Excel Export
+- Executive PDF Reports
+- Enterprise Analytics Reports
 
-* Python
-* Pandas
-* PostgreSQL
-* Supabase
-* SQLAlchemy
-* Streamlit
-* Plotly
-* GitHub Actions
+⚙️ ETL Pipeline
+## ⚙️ ETL Pipeline
 
-## Architecture
+Transaction Generator
+↓
+Extract
+↓
+Transform
+↓
+Duplicate Removal
+↓
+Missing Value Handling
+↓
+Quality Validation
+↓
+Load to Supabase
+↓
+Dashboard Refresh
 
-Simulator → ETL → Supabase → Streamlit Dashboard
+🤖 Automated Daily Pipeline
 
-## Key Metrics
+## 🤖 Automated Daily Pipeline
 
-* Fraud Rate
-* Fraud Score Distribution
-* Top Fraud Cities
-* Top Fraud Merchants
-* Risk Distribution
-* Pipeline Execution Monitoring
+GitHub Actions automatically:
 
-## Future Enhancements
+- Generate Transactions
+- Run ETL Pipeline
+- Clean Data
+- Load Data into Supabase
+- Update Monitoring Tables
 
-* Kafka Streaming
-* Apache Airflow
-* Real-Time Fraud Detection
-* Machine Learning Fraud Prediction
+Schedule: Daily Automatic Execution
+
+🛠 Tech Stack
+
+## 🛠 Tech Stack
+
+### Frontend
+- Streamlit
+- Plotly
+
+### Backend
+- Python
+
+### Data Engineering
+- Pandas
+- NumPy
+
+### Database
+- PostgreSQL
+- Supabase
+
+### Automation
+- GitHub Actions
+
+### Reporting
+- ReportLab
+- OpenPyXL
+
+📂 Project Structure
+## 📂 Project Structure
+
+FraudShield
+│
+├── dashboard
+├── simulator
+├── etl
+├── database
+├── .github
+└── reports
+
+🎯 Key Features
+
+## 🎯 Key Features
+
+✅ Fraud Analytics Dashboard
+
+✅ ETL Pipeline
+
+✅ Automated Data Generation
+
+✅ Data Quality Monitoring
+
+✅ Alert Management
+
+✅ Heatmap Analytics
+
+✅ Cloud Database Integration
+
+✅ GitHub Actions Automation
+
+✅ Executive Reporting
+
+✅ Enterprise Reporting
+
+🏆 Project Outcome
+
+## 🏆 Project Outcome
+
+FraudShield demonstrates:
+
+- Data Engineering
+- ETL Development
+- Data Analytics
+- Dashboard Development
+- Cloud Database Management
+- GitHub Automation
+- Reporting Systems
+- Data Quality Monitoring
+
+👨‍💻 Author
+Thugadam Shanmuka Sai
+
+B.Tech CSE (AI & ML)
+
+Madanapalle Institute of Technology & Science
+
+Graduation Year: 2027
