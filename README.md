@@ -22,11 +22,11 @@ The entire ETL pipeline is automated using GitHub Actions, allowing the system t
 
 🌐 Live Application
 
-https://github.com/Shanmuka986/FraudShield
+https://fraudshield-analytics.streamlit.app/
 
 💻 GitHub Repository
 
-https://fraudshield-analytics.streamlit.app/
+https://github.com/Shanmuka986/FraudShield
 
 ---
 
