@@ -22,11 +22,10 @@ The entire ETL pipeline is automated using GitHub Actions, allowing the system t
 
 🌐 Live Application
 
-(Add Streamlit URL)
+
 
 💻 GitHub Repository
 
-(Add GitHub Repository URL)
 
 ---
 
